@@ -16,6 +16,11 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  # PATCH /users
+  def update
+
+  end
+
   private
 
   def user_params
