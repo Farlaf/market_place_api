@@ -3,18 +3,19 @@ class Api::V1::ProductsController < ApplicationController
   before_action :check_login, only: %i[create]
   before_action :check_owner, only: %i[update destroy]
 
-  def show
-    render json: @product
+  def index
+    @products = Product.all
+    render json: ProductSerializer.new(@products).serializable_hash
   end
 
-  def index
-    render json: Product.all
+  def show
+    render json: ProductSerializer.new(@product).serializable_hash
   end
 
   def create
     product = current_user.products.build(product_params)
     if product.save
-      render json: product, status: :created
+      render json: ProductSerializer.new(product).serializable_hash, status: :created
     else
       render json: { errors: product.errors }, status: :unprocessable_entity
     end
@@ -22,7 +23,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      render json: @product
+      render json: ProductSerializer.new(@product).serializable_hash
     else
       render json: @product.errors, status: :unprocessable_entity
     end
