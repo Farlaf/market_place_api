@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Product.delete_all
 User.delete_all
 
 3.times do
   user = User.create! email: Faker::Internet.email, password: 'locadex1234'
-  puts "Created a new user: #{user.email}"
+  Rails.logger.debug "Created a new user: #{user.email}"
 
   2.times do
     product = Product.create!(
@@ -12,8 +14,6 @@ User.delete_all
       published: true,
       user_id: user.id
     )
-    puts "Created a new product #{product.title}"
+    Rails.logger.debug "Created a new product #{product.title}"
   end
 end
-
-
