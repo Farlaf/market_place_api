@@ -3,7 +3,7 @@
 module Api
   module V1
     class OrdersController < ApplicationController
-      before_action :check_login, only: %i[index]
+      before_action :check_login, only: %i[index show create]
 
       def index
         render json: OrderSerializer.new(current_user.orders).serializable_hash
@@ -18,6 +18,22 @@ module Api
         else
           head :not_found
         end
+      end
+
+      def create
+        order = current_user.orders.build(order_params)
+
+        if order.save
+          render json: order, status: :created
+        else
+          render json: { error: order.errors }, status: :unprocessable_entity
+        end
+      end
+
+      private
+
+      def order_params
+        params.require(:order).permit(:total, productc_ids: [])
       end
     end
   end
