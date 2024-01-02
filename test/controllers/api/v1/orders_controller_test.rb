@@ -25,6 +25,19 @@ module Api
         json_response = response.parsed_body
         assert_equal @order.user.orders.count, json_response['data'].count
       end
+
+      test 'should show order' do
+        get api_v1_order_url(@order),
+            headers: {
+              Authorization: JsonWebToken.encode(user_id: @order.user_id)
+            },
+            as: :json
+        assert_response :success
+
+        json_response = response.parsed_body
+        include_product_attr = json_response['included'][0]['attributes']
+        assert_equal @order.products.first.title, include_product_attr['title']
+      end
     end
   end
 end
