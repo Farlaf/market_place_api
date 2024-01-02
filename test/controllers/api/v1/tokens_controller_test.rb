@@ -18,7 +18,7 @@ module Api
         }, as: :json
         assert_response :success
 
-        json_response = JSON.parse(response.body)
+        json_response = response.parsed_body
         assert_not_nil json_response['token']
       end
 

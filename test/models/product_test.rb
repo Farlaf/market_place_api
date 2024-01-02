@@ -26,8 +26,7 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test 'should sort product by most recent' do
-    # touch product to update it
-    products(:two).touch
+    # change date update in fixtures
     assert_equal [products(:another_tv), products(:one), products(:two)], Product.recent.to_a
   end
 

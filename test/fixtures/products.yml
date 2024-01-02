@@ -9,6 +9,7 @@ two:
   price: 499.99
   published: false
   user: two
+  updated_at: <%= DateTime.now.to_fs(:db) %>
 
 another_tv:
   title: Cheap TV
