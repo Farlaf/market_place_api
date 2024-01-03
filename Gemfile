@@ -57,3 +57,5 @@ gem 'jsonapi-serializer', '~> 2.2'
 gem 'rubocop-rails', '~> 2.23'
 
 gem 'kaminari', '~> 1.2'
+
+gem "bullet", "~> 7.1", :group => :development
