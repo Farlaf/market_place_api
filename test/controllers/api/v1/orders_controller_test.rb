@@ -11,7 +11,7 @@ module Api
           order: {
             product_ids_and_quantities: [
               { product_id: products(:one).id, quantity: 2 },
-              { product_id: products(:two).id, quantity: 23 }
+              { product_id: products(:two).id, quantity: 3 }
             ]
           }
         }
