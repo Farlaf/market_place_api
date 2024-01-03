@@ -3,6 +3,7 @@ one:
   price: 9999.99
   published: false
   user: one
+  quantity: 5
 
 two:
   title: Plastic Car
@@ -10,10 +11,12 @@ two:
   published: false
   user: two
   updated_at: <%= DateTime.now.to_fs(:db) %>
+  quantity: 5
 
 another_tv:
   title: Cheap TV
   price: 99.99
   published: false
   user: two
+  quantity: 5
 
